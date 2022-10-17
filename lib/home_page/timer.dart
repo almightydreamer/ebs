@@ -1,3 +1,4 @@
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -7,37 +8,28 @@ import '../res/text_styles.dart';
 
 import '../res/svg_assets.dart';
 
-
 class TimerWidget extends StatefulWidget {
-
   final TextEditingController hourTimerController;
   final TextEditingController minuteTimerController;
   final TextEditingController secondTimerController;
 
-
-
-  const TimerWidget(
-      {Key? key,
-        required this.hourTimerController,
-        required this.minuteTimerController,
-        required this.secondTimerController}) : super(key: key);
-
-
-
+  const TimerWidget({Key? key,
+    required this.hourTimerController,
+    required this.minuteTimerController,
+    required this.secondTimerController})
+      : super(key: key);
 
   @override
   State<TimerWidget> createState() => _TimerWidgetState();
 }
 
-
 class _TimerWidgetState extends State<TimerWidget> {
-
-
   @override
   Widget build(BuildContext context) {
     return Container(
       child: Column(
         children: [
+          SizedBox(height: 240),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -58,15 +50,13 @@ class _TimerWidgetState extends State<TimerWidget> {
                         decoration: InputDecoration(
                             hintText: '00', hintStyle: TextStyles.sfpRegular40),
                       ),
-                    )
-                ),
+                    )),
               ),
               SizedBox(
                 width: 29,
                 height: 80,
                 child: Center(
-                  child: Text(':',
-                      style: TextStyles.sfpRegular40),
+                  child: Text(':', style: TextStyles.sfpRegular40),
                 ),
               ),
               //
@@ -86,15 +76,13 @@ class _TimerWidgetState extends State<TimerWidget> {
                         decoration: InputDecoration(
                             hintText: '00', hintStyle: TextStyles.sfpRegular40),
                       ),
-                    )
-                ),
+                    )),
               ),
               SizedBox(
                 width: 29,
                 height: 80,
                 child: Center(
-                  child: Text(':',
-                      style: TextStyles.sfpRegular40),
+                  child: Text(':', style: TextStyles.sfpRegular40),
                 ),
               ),
               //
@@ -114,14 +102,11 @@ class _TimerWidgetState extends State<TimerWidget> {
                         decoration: InputDecoration(
                             hintText: '00', hintStyle: TextStyles.sfpRegular40),
                       ),
-                    )
-                ),
+                    )),
               )
             ],
           ),
-          const SizedBox(
-              height: 8
-          ),
+          const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -129,10 +114,11 @@ class _TimerWidgetState extends State<TimerWidget> {
                   width: 80,
                   height: 15,
                   child: Center(
-                    child: Text('hour(s)', style: TextStyles.sfpRegular14,
+                    child: Text(
+                      'hour(s)',
+                      style: TextStyles.sfpRegular14,
                     ),
-                  )
-              ),
+                  )),
               const SizedBox(
                 width: 29,
                 height: 15,
@@ -141,10 +127,11 @@ class _TimerWidgetState extends State<TimerWidget> {
                   width: 80,
                   height: 15,
                   child: Center(
-                    child: Text('minute(s)', style: TextStyles.sfpRegular14,
+                    child: Text(
+                      'minute(s)',
+                      style: TextStyles.sfpRegular14,
                     ),
-                  )
-              ),
+                  )),
               const SizedBox(
                 width: 29,
                 height: 15,
@@ -153,19 +140,16 @@ class _TimerWidgetState extends State<TimerWidget> {
                   width: 80,
                   height: 15,
                   child: Center(
-                    child: Text('second(s)', style: TextStyles.sfpRegular14,
+                    child: Text(
+                      'second(s)',
+                      style: TextStyles.sfpRegular14,
                     ),
-                  )
-              )
+                  ))
             ],
           ),
-          const SizedBox(
-              height: 205,
-              width: 20
-          )
+          //const SizedBox(height: 205, width: 20)
         ],
       ),
-
     );
   }
 }

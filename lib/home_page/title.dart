@@ -9,7 +9,7 @@ class TitleWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.only(top: 16, bottom: 240),
+        padding: const EdgeInsets.only(top: 79/*, bottom: 240*/),
         child: Text(
           'Countdown Timer',
           style: TextStyles.sfpRegular32,

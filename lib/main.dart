@@ -3,6 +3,7 @@ import 'package:internshiptask1/res/svg_assets.dart';
 import 'package:internshiptask1/home_page/timer.dart';
 
 import 'home_Page/button.dart';
+import 'home_page/circle_progress.dart';
 import 'home_page/title.dart';
 import 'dart:async';
 
@@ -20,11 +21,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   bool statement = true;
 
+
   final _hourTimerController = TextEditingController();
   final _minuteTimerController = TextEditingController();
   final _secondTimerController = TextEditingController();
 
   int currentSeconds = 0;
+  late int maxSeconds;
   Timer? timer;
 
   @override
@@ -33,7 +36,7 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         body: Container(
           color: Colors.red,
-          child: ListView(
+          child: Column(
             children: [
               TitleWidget(),
               (statement)
@@ -42,13 +45,18 @@ class _MyAppState extends State<MyApp> {
                       minuteTimerController: _minuteTimerController,
                       secondTimerController: _secondTimerController)
                   : Container(
-                      child: Text('$currentSeconds',
-                          style: TextStyle(fontSize: 50))),
-              (statement)
-                  ? TimerButtonWidget(
-                      icon: SvgAssets.start, onPress: _toggleTimer)
-                  : TimerButtonWidget(
-                      icon: SvgAssets.pause, onPress: _toggleTimer)
+                      child: TimerCDCircleWidget(currentSeconds: currentSeconds,maxSeconds: maxSeconds)),
+              Expanded(
+                child: Align(
+                  alignment: FractionalOffset.bottomCenter,
+                  child: (statement)
+                      ? TimerButtonWidget(
+                          icon: SvgAssets.start, onPress: _toggleTimer)
+                      : TimerButtonWidget(
+                          icon: SvgAssets.pause, onPress: _toggleTimer),
+                ),
+              ),
+              const SizedBox(height: 69),
             ],
           ),
         ),
@@ -57,17 +65,21 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _toggleTimer() {
+
     statement = !statement;
     getSeconds();
+    maxSeconds = currentSeconds;
     setState(() {});
+    timer?.cancel();
     if (!statement) {
-      Timer.periodic(Duration(seconds: 1), (timer) {
-        setState(() {});
+      timer = Timer.periodic(Duration(seconds: 1), (timer) {
         print(currentSeconds);
         currentSeconds--;
         if (currentSeconds <= 0 && (!statement)) {
           timer.cancel();
         }
+
+        setState(() {});
       });
     }
   }
