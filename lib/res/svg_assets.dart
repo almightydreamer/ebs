@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter_svg/svg.dart';
 
 class SvgAssets {

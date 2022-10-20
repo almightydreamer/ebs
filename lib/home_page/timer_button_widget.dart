@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
+
+import '../controller/timer_controller.dart';
 
 class TimerButtonWidget extends StatelessWidget {
   final SvgPicture icon;
-  final VoidCallback onPress;
 
-  const TimerButtonWidget({Key? key, required this.icon, required this.onPress}) : super(key: key);
+  const TimerButtonWidget({Key? key, required this.icon}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final TimerController timerController = Get.find();
     return GestureDetector(
-      onTap: onPress,
+      onTap: timerController.toggleTimer,
       child: Container(
         width: 76,
         height: 76,
